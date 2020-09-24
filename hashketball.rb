@@ -216,3 +216,85 @@ def big_shoe_rebounds
       j += 1 
     end 
 end 
+
+def most_points_scored
+  points_array = []
+  i = 0 
+  while i < game_hash[:home][:players].size || i < game_hash[:away][:players].size 
+    points_array << game_hash[:home][:players][i][:points]
+    points_array << game_hash[:away][:players][i][:points]  
+    points_array.sort!
+    i += 1 
+  end 
+  j = 0 
+  while j < game_hash[:home][:players].size || j < game_hash[:away][:players].size 
+    if points_array[points_array.length - 1] == game_hash[:home][:players][j][:points]
+      return game_hash[:home][:players][j][:player_name]
+    elsif points_array[points_array.length - 1] == game_hash[:away][:players][j][:points]
+      return game_hash[:away][:players][j][:player_name]
+    end 
+    j += 1 
+  end 
+end 
+
+def winning_team
+  nets_points = []
+  hornets_points = []
+  i = 0 
+  while i < game_hash[:home][:players].size || i < game_hash[:away][:players].size 
+    nets_points << game_hash[:home][:players][i][:points]
+    hornets_points << game_hash[:away][:players][i][:points]
+    i += 1 
+  end 
+  team_points_nets = net_points.sum 
+  team_points_hornets = hornets_points.sum
+  j += 0 
+  while j < game_hash[:home][:players].size || j < game_hash[:away][:players].size 
+    if team_points_nets > team_points_hornets
+      return game_hash[:home][:team_name]
+    elsif team_points_hornets > team_points_nets
+      return game_hash[:away][:team_name]
+  end
+end
+end 
+
+def player_with_longest_name 
+  # length of string player name 
+  length_names = []
+  i = 0 
+  while i < game_hash[:home][:players].size || i < game_hash[:away][:players].size 
+  # push into string
+    length_names << game_hash[:home][:players][i][:player_name].length 
+    length_names << game_hash[:home][:players][i][:player_name].length
+  # sort
+    length_names.sort!
+    i += 1 
+  end 
+  #sort.length - 1 == length of player name, return player name
+  j = 0 
+  while j < game_hash[:home][:players].size || j < game_hash[:away][:players].size 
+    if length_names[length_names.length - 1] == game_hash[:home][:players][j][:player_name].length 
+      return game_hash[:home][:players][j][:player_name]
+    elsif length_names[length_names.length - 1] == game_hash[:away][:players][j][:player_name].length 
+      return game_hash[:away][:players][j][:player_name]
+    end 
+    j += 1 
+  end 
+end 
+
+def long_name_steals_a_ton(player_name)
+ # if player_with_longest_name == most steals, return true
+  steals = []
+  i = 0 
+  while i < game_hash[:home][:players].size || i < game_hash[:away][:players].size 
+    steals << game_hash[:home][:players][i][:steals]
+    steals << game_hash[:away][:players][i][:steals]
+    steals.sort!
+    i += 1 
+  end 
+  if player_with_longest_name == game_hash[:away][:players][1][:player_name]
+    if game_hash[:away][:players][1][:steals] = steals[steals.length - 1]
+      return true 
+    end 
+  end 
+end
